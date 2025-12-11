@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Example custom utilities (optional) */
+/* .prose a { text-decoration: underline; } */
+
+/* Smooth scrolling for anchor links */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Prevent unwanted horizontal scrollbar on small screens or transforms */
+html, body, #root {
+  overflow-x: hidden;
+}
+
+/* Ensure native pointer is available site-wide and make interactive elements show pointer */
+html, body, #root { cursor: auto; }
+
+/* Explicitly set pointer cursor for interactive controls and ranges */
+a, button, input, textarea, select, label, [role="button"], input[type="range"] {
+	cursor: pointer;
+}
+
+/* Keep resize cursor for before/after draggable slider */
+.cursor-ew-resize, .ew-resize, .cursor-ew-resize * { cursor: ew-resize !important; }
+
+/* Performance hints to reduce scroll jitter */
+.hero-image,
+.hero-right {
+	will-change: transform;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
+/* Reduce pointer-event work during scroll for heavy overlays */
+.no-pointer-during-scroll {
+	pointer-events: none;
+}
+
+/* Ensure native select dropdown options are readable on dark backgrounds */
+select, select option {
+	color: #000 !important;
+	background: #fff !important;
+}
+
+/* Make select text visible when the select itself is rendered with white text */
+select {
+	color: #000 !important;
+}
+
+/* Improve focus outline for selects inside dark panels */
+select:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
+}
+
+/* Global heading font — use CompassSerif if available, fall back to common serif fonts */
+:root {
+	--heading-font: "CompassSerif", "Times New Roman", Georgia, serif;
+}
+
+/* Apply the heading font across all headings and any element using Tailwind's font-serif utility */
+h1, h2, h3, h4, h5, h6, .font-serif {
+	font-family: var(--heading-font) !important;
+	/* preserve existing sizing utilities; only change family and smoothing */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional: ensure large headings are visually similar to provided spec */
+h1 { font-weight: 400; }
+
+/* Make native datetime-local picker icon visible on dark backgrounds (WebKit/Blink browsers) */
+input[type="datetime-local"] {
+	color: #fff; /* ensure text is visible */
+}
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+	filter: invert(1) grayscale(1) contrast(1.2) !important;
+	opacity: 1;
+}
+
+/* Fallback for Firefox: show white text inside the control */
+input[type="datetime-local"]::-moz-focus-inner {
+	color: #fff;
+}
+
+/* Page Loader styles */
+.page-loader-overlay { background-color: #141414; }
+.loader-inner { max-width: 420px; width: 100%; padding: 36px 24px; }
+.loader-rings { position: relative; width: 120px; height: 120px; margin: 0 auto; }
+.loader-rings .ring { position: absolute; left: 0; top: 0; }
+.loader-rings .ring-1 { animation: ring-rotate 2200ms linear infinite; }
+.loader-rings .ring-2 { animation: ring-rotate-rev 1600ms linear infinite; transform-origin: 50% 50%; }
+.loader-rings .ring-core { pointer-events: none; }
+.core-dot { transform: scale(0.98); animation: core-pulse 1200ms ease-in-out infinite; }
+
+@keyframes ring-rotate {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+@keyframes ring-rotate-rev {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(-360deg); }
+}
+@keyframes core-pulse {
+	0% { transform: scale(0.92); filter: blur(0px); }
+	50% { transform: scale(1.05); filter: blur(0.6px); }
+	100% { transform: scale(0.92); filter: blur(0px); }
+}
+
+/* subtle fade-in for loader text */
+.loader-text h1 { animation: fadeUp 800ms ease both; }
+.loader-text p { animation: fadeUp 1000ms ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Page transition for route changes */
+@keyframes pageFadeIn {
+	from { opacity: 0; transform: translateY(18px) scale(0.995); filter: blur(1px); }
+	60% { opacity: 0.9; transform: translateY(6px) scale(0.998); filter: blur(0.2px); }
+	to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.page-transition { animation: pageFadeIn 900ms cubic-bezier(.2,.8,.2,1) both; }
+
+/* Transition splash (spreading black) */
+.transition-splash-overlay { display:flex; align-items:center; justify-content:center; }
+.transition-splash-overlay .splash-center {
+	width: 40vmax; height: 40vmax; border-radius: 50%; background: radial-gradient(circle at center, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
+	transform: scale(0.02);
+	opacity: 0.95;
+	animation: splashExpand 900ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes splashExpand {
+	0% { transform: scale(0.02); opacity: 0.0; filter: blur(0px); }
+	30% { transform: scale(0.3); opacity: 0.9; filter: blur(2px); }
+	70% { transform: scale(0.9); opacity: 0.35; filter: blur(6px); }
+	100% { transform: scale(1.4); opacity: 0; filter: blur(10px); }
+}
+
+/* Custom cursor styles */
+.custom-cursor-dot {
+	position: fixed;
+	top: 0; left: 0;
+	width: 6px; height: 6px;
+	background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.02), #141414 60%);
+	border-radius: 9999px;
+	transform: translate3d(-50%, -50%, 0);
+	z-index: 2147483647;
+	pointer-events: none;
+	mix-blend-mode: normal;
+	transition: background 200ms ease, transform 120ms ease;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4) inset;
+}
+
+.custom-cursor-ring {
+	position: fixed;
+	top: 0; left: 0;
+	width: 36px; height: 36px;
+	border-radius: 50%;
+	transform: translate3d(-50%, -50%, 0);
+	background: radial-gradient(circle at center, rgba(20,20,20,0.12), rgba(20,20,20,0.02));
+	border: 1px solid rgba(20,20,20,0.08);
+	backdrop-filter: blur(4px);
+	box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+	z-index: 2147483646;
+	pointer-events: none;
+	transition: transform 220ms cubic-bezier(.2,.9,.3,1), opacity 220ms ease;
+}
+
+/* Hide when not hovering document (optional) */
+html:not(.no-custom-cursor) .custom-cursor-dot,
+html:not(.no-custom-cursor) .custom-cursor-ring {
+	opacity: 1;
+}
+
+@media (pointer: coarse), (hover: none) {
+	/* Disable on touch devices */
+	.custom-cursor-dot, .custom-cursor-ring { display: none !important; }
+}
+
+/* Range input track/thumb colors */
+input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+}
+
+input[type="range"]:focus { outline: none; }
+
+input[type="range"]::-webkit-slider-runnable-track {
+	height: 6px;
+	background: #141414;
+	border-radius: 9999px;
+}
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 16px; height: 16px; margin-top: -5px;
+	background: #141414; border-radius: 9999px; box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+input[type="range"]::-moz-range-track { height: 6px; background: #141414; border-radius: 9999px; }
+input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; background: #141414; border-radius: 9999px; box-shadow: 0 4px 10px rgba(0,0,0,0.6); }
+
+/* Vertical scrollbar styling (WebKit) */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background-color: #141414; border-radius: 9999px; border: 2px solid rgba(255,255,255,0.02); }
+
+
