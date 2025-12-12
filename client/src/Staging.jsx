@@ -105,8 +105,8 @@ const BeforeAfterSlider = ({ before, after, title }) => {
 const properties = [
     {
         title: 'Elegant Living Room Transformation',
-        before: 'src/Public/images/Living Room.jpg', // Empty bedroom
-        after: 'src/Public/images/Living room after.jpg' // Staged bedroom
+        before: 'images/Living Room.jpg', // Empty bedroom
+        after: 'images/Living room after.jpg' // Staged bedroom
     }
 ];
 
@@ -122,7 +122,7 @@ export default function Staging() {
                     <div className="h-full">
                         <div
                             className="h-full bg-cover bg-center"
-                            style={{ backgroundImage: `url('src/Public/images/Philip_ottawa.png')` }}
+                            style={{ backgroundImage: `url('images/Philip_ottawa.png')` }}
                         />
                     </div>
                     <div className="flex items-center justify-center bg-white p-12">
