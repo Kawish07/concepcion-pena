@@ -277,7 +277,7 @@ export default function App() {
                 <div className="grid md:grid-cols-2 h-[90vh]">
                     <div className="relative h-full overflow-hidden">
                         <img
-                            src="src/Public/images/Philip_hero.png"
+                            src="/images/Philip_hero.png"
                             alt="Philip Parnanzone"
                             className="hero-image w-full h-full object-cover transform -translate-y-6 md:-translate-y-10 scale-105"
                         />

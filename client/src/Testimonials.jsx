@@ -37,7 +37,7 @@ export default function Testimonials() {
 
             {/* Top split hero: left image, right content */}
             <section className="grid md:grid-cols-2">
-<div className="h-[90vh] md:h-[100vh] bg-cover bg-center" style={{ backgroundImage: "url('src/Public/images/Testimonial.png')" }} />
+<div className="h-[90vh] md:h-[100vh] bg-cover bg-center" style={{ backgroundImage: "url('/images/Testimonial.png')" }} />
                 <div className="flex items-center justify-center p-12">
                     <div className="max-w-xl">
                         <p className="text-sm tracking-[0.3em] mb-6 text-gray-700 font-light">TESTIMONIALS</p>
