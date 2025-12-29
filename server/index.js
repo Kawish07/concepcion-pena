@@ -11,8 +11,15 @@ const { uploadsDir } = require('./middlewares/upload');
 // ensure uploads folder exists (upload middleware also does this)
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 
+
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://my-agency-omega.vercel.app', // Vercel frontend
+    'http://localhost:5173' // Local frontend (Vite default)
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // serve uploaded files
