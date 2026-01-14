@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Menu, X, Instagram, Facebook } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { getLenis } from '../lib/lenis';
 import ContactModal from './ContactModal';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
-import { X, Instagram, Facebook } from "lucide-react";
+import { X } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { getLenis } from "./lib/lenis";
@@ -27,8 +27,6 @@ export default function App() {
   const [leftLoading, setLeftLoading] = useState(false);
   const [leftError, setLeftError] = useState(null);
   const [globalLoading, setGlobalLoading] = useState(true);
-  const [videoPlaying, setVideoPlaying] = useState(false);
-  const videoRef = useRef(null);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
   const hasShownPopup = useRef(false);
@@ -304,17 +302,7 @@ export default function App() {
     }
   };
 
-  const handleVideoPlay = () => {
-    if (videoRef.current) {
-      if (videoPlaying) {
-        videoRef.current.pause();
-        setVideoPlaying(false);
-      } else {
-        videoRef.current.play();
-        setVideoPlaying(true);
-      }
-    }
-  };
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -331,20 +319,7 @@ export default function App() {
               alt="Philip Parnanzone"
               className="hero-image w-full h-full object-cover transform -translate-y-6 md:-translate-y-10 scale-105"
             />
-            <div className="absolute bottom-8 left-8 flex space-x-3">
-              <a
-                href="https://www.instagram.com/theagency.ottawa/?hl=en"
-                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors shadow-md"
-              >
-                <Instagram className="w-5 h-5 text-black" />
-              </a>
-              <a
-                href="https://www.facebook.com/parnanzonerealty/"
-                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors shadow-md"
-              >
-                <Facebook className="w-5 h-5 text-black" />
-              </a>
-            </div>
+
           </div>
           <div className="hero-right flex flex-col justify-start mt-20 md:mt-28 pt-16 md:pt-20 pb-6 px-12 md:px-20 bg-white h-full relative overflow-hidden">
             <div className="absolute right-8 md:right-20 bottom-6 text-gray-100 text-8xl md:text-9xl font-serif font-bold opacity-10 pointer-events-none z-0">
@@ -563,12 +538,16 @@ export default function App() {
       </section>
 
       {/* Featured Video Section */}
-      <section id="video" className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl md:text-5xl font-serif mb-8">About Me</h2>
-            <p className="text-base leading-relaxed mb-8 text-gray-700">
-              I’m Concepcion Pena, Broker and Owner of Colonial Real Estate.
+      <section id="about" className="py-20 px-6 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="relative mb-8 w-fit mx-auto">
+            <h2 className="text-4xl md:text-5xl font-serif relative z-10">
+              About Me
+            </h2>
+            <span className="absolute bottom-0 left-0 right-0 h-3 bg-yellow-200 opacity-60"></span>
+          </div>
+          <p className="text-base leading-relaxed mb-8 text-gray-700 max-w-3xl mx-auto">
+            I'm Concepcion Pena, Broker and Owner of Colonial Real Estate.
               With over 20 years of experience in real estate, I’ve had the
               opportunity to work with buyers and sellers through a wide range
               of market conditions, always focusing on clear communication and
@@ -580,71 +559,8 @@ export default function App() {
               analytical and problem-solving skills. Today, I use this diverse
               background to help clients make informed real estate decisions
               with confidence.
-            </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://www.instagram.com/theagency.ottawa/?hl=en"
-                className="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a
-                href="https://www.facebook.com/parnanzonerealty/"
-                className="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-          <div className="relative" style={{ paddingBottom: "110%" }}>
-            <video
-              ref={videoRef}
-              className="absolute top-0 left-0 w-full h-full object-cover"
-              poster="https://images.pexels.com/photos/313691/pexels-photo-313691.jpeg"
-              onClick={handleVideoPlay}
-            >
-              <source src="https://www.pexels.com/download/video/7578550/" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+          </p>
 
-            {!videoPlaying && (
-              <button
-                onClick={handleVideoPlay}
-                className="absolute inset-0 flex items-center justify-center group cursor-pointer bg-black bg-opacity-20 hover:bg-opacity-30 transition-all duration-300"
-              >
-                <div className="relative">
-                  {/* Ripple effect ring */}
-                  <div className="absolute inset-0 w-20 h-20 -left-2 -top-2 bg-white rounded-full opacity-30 animate-ripple"></div>
-
-                  {/* Play button */}
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 shadow-lg relative z-10">
-                    <svg
-                      className="w-6 h-6 ml-1 text-black"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </button>
-            )}
-
-            {videoPlaying && (
-              <button
-                onClick={handleVideoPlay}
-                className="absolute top-4 right-4 w-12 h-12 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center transition-all duration-300 z-10"
-              >
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-                </svg>
-              </button>
-            )}
-          </div>
         </div>
       </section>
 

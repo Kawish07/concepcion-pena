@@ -1,5 +1,5 @@
 import React from "react";
-import { Instagram, Facebook } from "lucide-react";
+
 
 export default function Footer() {
   return (
@@ -25,7 +25,7 @@ export default function Footer() {
                 <p className="text-sm tracking-widest mb-4 font-light">
                   LICENSED IN
                 </p>
-                <p className="text-sm tracking-widest font-light">United States</p>
+                <p className="text-sm tracking-widest font-light">Texas, United states</p>
               </div>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
@@ -145,21 +145,7 @@ export default function Footer() {
               Powered by <span className="font-medium">Realizty Inc</span>
             </p>
             <div className="flex items-center space-x-6">
-              <p className="text-sm font-light">Copyright © 2025 | </p>
-              <div className="flex space-x-3">
-                <a
-                  href="https://www.instagram.com/theagency.ottawa/?hl=en"
-                  className="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
-                >
-                  <Instagram className="w-4 h-4" />
-                </a>
-                <a
-                  href="https://www.facebook.com/parnanzonerealty/"
-                  className="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
-                >
-                  <Facebook className="w-4 h-4" />
-                </a>
-              </div>
+              <p className="text-sm font-light">Copyright © 2025</p>
             </div>
           </div>
         </div>
