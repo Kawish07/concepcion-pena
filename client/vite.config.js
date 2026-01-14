@@ -9,8 +9,8 @@ export default defineConfig({
       // This avoids CORS when developing locally (browser -> Vite -> remote API)
       '/api': {
         // Proxy target is driven by env: VITE_API_PROXY (dev) or VITE_API_URL (prod).
-        // Default to the local backend during development so Vite forwards /api to localhost:5000.
-        target: process.env.VITE_API_PROXY || 'http://localhost:5000',
+        // Default to the local backend during development so Vite forwards /api to localhost:5001.
+        target: process.env.VITE_API_PROXY || 'http://localhost:5001',
         changeOrigin: true,
         secure: true,
         rewrite: (path) => path.replace(/^\/api/, '/api')

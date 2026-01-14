@@ -1,6 +1,6 @@
 // Default to your admin production domain when VITE_API_URL isn't set
 // API base: prefer VITE_API_URL; during development use relative path '' so dev proxy works.
-export const API = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? '' : 'https://admin.parnanzonehomes.com');
+export const API = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? '' : 'https://www.yourdomain.com');
 export const SITE_BASE = API || (typeof window !== 'undefined' ? window.location.origin : '');
 
 export function resolveImage(img) {

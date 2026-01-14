@@ -361,7 +361,7 @@ export default function App() {
               </h1>
               <div className="mb-8 relative">
                 <h2 className="text-2xl md:text-3xl font-light text-gray-700 tracking-[0.3em] uppercase">
-                  Broker and Owner
+                 Real Estate Broker
                 </h2>
                 <div className="w-24 h-1 bg-yellow-400 mt-3"></div>
               </div>
